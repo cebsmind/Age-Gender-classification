@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age and Gender Prediction Result</title>
+    <!-- Link to your CSS file in the head section -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- In your index.html and result.html files, just before </body> -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-image: url("{{ url_for('static', filename='background/background.jpeg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        img {
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .back-button {
+            padding: 10px;
+            background-color: #472c5e96;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #472c5e96;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="result-container">
+        <h1>MY PREDICTION  </h1>
+        <p>I'd say you're a <strong>{{ age[0][0]|int }} years old {{ gender }} </strong></p>
+        <div class="image-container">
+            <img src="{{ image_path }}" alt="Uploaded Image" width="400">
+        </div>
+
+        <!-- Button to go back to the main page -->
+        <div class="button-container">
+            <a href="{{ url_for('home') }}" class="back-button">Back to Main Page</a>
+        </div>
+        <!-- Additional text -->
+       <p class="additional-text">If I gave an incorrect answer, don't blame me, blame my Master :)</p>
+    </div>
+</body>
+<style>
+    /* ... Existing CSS ... */
+
+    .additional-text {
+        background-color: #472c5e70; /* Set the background color */
+        padding: 10px; /* Add padding for better visibility */
+        border-radius: 40px; /* Add border-radius for rounded corners */
+        margin-top: 20px; /* Add top margin for spacing */
+        font-weight: bold; /* Make the text bold */
+        max-width: 600px; /* Set the maximum width */
+        margin-left: auto; /* Center the element horizontally */
+        margin-right: auto; /* Center the element horizontally */
+
+    }
+</style>
+</html>

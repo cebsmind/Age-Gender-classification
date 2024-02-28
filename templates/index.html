@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age and Gender Prediction</title>
+    <!-- Link to your CSS file in the head section -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- In your index.html and result.html files, just before </body> -->
+    <style>
+    
+        body {
+            background-image: url("{{ url_for('static', filename='background/background.jpeg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #cfcece;
+            margin-bottom: 20px;
+            font-family: 'Your Chosen Font', sans-serif; /* Replace 'Your Chosen Font' with the desired font name */
+            font-size: 24px; /* Adjust the font size as needed */
+            font-weight: bold; /* Optionally, set the font weight to bold or adjust it as needed */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+                /* Add styles for the navigation banner */
+        .banner {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: rgba(43, 41, 41, 0); /* Use rgba with an alpha channel for transparency */
+            padding: 10px;
+            width: 100%; /* Set width to 100% to span the full width */
+            border-radius: 10px;
+            margin: 0; /* Remove default margin */
+        }
+
+        .banner a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #472c5e96; /* Adjust the alpha channel as needed */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .banner a:hover {
+            background-color: #ddd;
+            color: #fff;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #472c5e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #472c5e;
+        }
+
+        /* Set fixed width and height for the image preview */
+        #imagePreview {
+            width: 200px;
+            height: 200px;
+            display: none;
+            margin: 20px auto; /* Center the image horizontally */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation banner -->
+    <div class="banner">
+        <a href="/">Home</a>
+        <a href="/info">Info</a>
+        <a href="/help">Help</a>
+    </div>
+
+    <!-- Introduction Section -->
+    <div class="introduction">
+        <h2 id="typed-heading"></h2>
+        <p id="typed-text"></p>
+    </div>
+
+
+    <div class="container">
+        <h1>Age and Gender Prediction</h1>
+        <form action="/detect_age_gender" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <!-- Add onchange attribute to call the previewImage function -->
+            <input type="file" name="file" accept=".jpg, .jpeg, .png, .gif" id="fileInput" onchange="previewImage()">
+            <button type="submit">Predict</button>
+        </form>
+        <!-- Add an image element for the preview -->
+        <img id="imagePreview" style="display: none;" alt="Image Preview">
+    </div>
+
+    
+    <!-- Instructions Container -->
+    <div class="instructions-container">
+        <!-- Instructions -->
+        <div class="instructions">
+            <h2>Instructions:</h2>
+            <ul>
+                <li>Display one face picture.</li>
+                <li>Ensure the image is in the correct format (e.g., JPG, JPEG, PNG, GIF).</li>
+                <li>Good luminosity.</li>
+                <li>I'm still learning... :-(</li>
+            </ul>
+        </div>
+    </div>
+
+        
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

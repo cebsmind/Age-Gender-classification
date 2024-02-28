@@ -1,0 +1,174 @@
+/* Reset some default styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("{{ url_for('static', filename='background/background.jpeg') }}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+}
+
+body, h1, p, img {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto 0;
+    padding: 20px;
+    background-color: rgba(50, 50, 50, 0.5); /* Use a dark/gray color with an alpha value */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    position: relative;
+    z-index: 2; /* Set a higher z-index to ensure the container is on top of the background */
+    color: rgb(245, 241, 241);
+}
+
+h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Set fixed width and height for the image preview */
+#imagePreview {
+    width: 200px;
+    height: 200px;
+    display: none;
+    margin: 20px auto; /* Center the image horizontally */
+}
+
+/* Result Page Styles */
+
+.result-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.result-container img {
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.back-button:hover {
+    background-color: #472c5e;
+}
+
+
+
+/* Add styles for the introduction section */
+.introduction {
+    color: rgba(255, 255, 255, 1); /* Set the text color to fully opaque white */
+    margin: 20px 0; /* Add some margin to separate it from the banner and the next section */
+}
+
+.introduction h2 {
+    color: rgba(255, 255, 255, 1); /* Set the text color to fully opaque white */
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 1),  
+        1px -1px 0 rgba(0, 0, 0, 1),
+        -1px 1px 0 rgba(0, 0, 0, 1),
+        1px 1px 0 rgba(0, 0, 0, 1),
+        2px 2px 2px rgba(0, 0, 0, 0.7); /* Add a shadow to create a border effect */
+}
+
+.introduction p {
+    line-height: 1.5; /* Increase line height for better readability */
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 1),  
+        1px -1px 0 rgba(0, 0, 0, 1),
+        -1px 1px 0 rgba(0, 0, 0, 1),
+        3px 3px 0 rgba(0, 0, 0, 1),
+        4px 4px 4px rgba(0, 0, 0, 1); /* Add a shadow to create a border effect */
+}
+
+
+.instructions-container {
+    max-width: 600px; /* Set the maximum width for the container */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+.instructions {
+    background-color: #472c5e60; /* Set the background color */
+    color: #ffffff; /* Set text color to white */
+    padding: 20px; /* Add padding for better visibility */
+    margin-top: 20px; /* Add some top margin to separate it from the rest */
+    border-radius: 10px; /* Add border-radius for rounded corners */
+    text-align: left; /* Align text to the left */
+}
+
+.instructions h2 {
+    font-size: 24px; /* Increase heading font size */
+    font-weight: bold; /* Make the heading bold */
+    margin-bottom: 15px; /* Add some bottom margin for spacing */
+}
+
+.instructions ul {
+    list-style-type: disc; /* Use disc as the list item marker */
+    padding-left: 20px; /* Add left padding for the bullet points */
+}
+
+.instructions li {
+    font-weight: bold; /* Make list items bold */
+    margin-bottom: 10px; /* Add margin between list items */
+}
+
+.banner {
+    display: inline-block; /* Display as inline-block to only take the width of the content */
+    width: 40%; /* Set a specific width */
+    padding: 10px;
+    background-color: #333; /* Banner background color */
+    color: #ffffff; /* Banner text color */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+    margin-top: 15px; /* Add margin between the instructions and banner */
+}
