@@ -12,3 +12,4 @@ This Project's goal is to use Deep Learning to predict the age & gender of a per
 - More info here : https://susanqq.github.io/UTKFace/
 
 # How CNN Works ?
+![1 7_BCJFzekmPXmJQVRdDgwg](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/d1f4ffa5-33b4-421a-80fc-b7fa5368c40b)
