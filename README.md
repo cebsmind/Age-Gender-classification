@@ -185,7 +185,13 @@ gender_model.compile(optimizer=optimizer_gender, loss='binary_crossentropy', met
 ```
 # Evaluate model
 ## 1. Metrics
-Now we trained our model, we can evaluate the metrics for each epochs for our gender model (More than 90% accuracy to predict the gender)
+Now we trained our model, we can evaluate the metrics for each epochs for our age and gender models.
+### 1. Age model loss function
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/5da4f205-5bb2-4d4d-bac7-9ec5c115b17a)
+
+We can see that the loss function is decreasing which is a good sign for our age prediction model.
+
+### 2. Gender model accuracy 
 
 ![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/de2ef699-e348-450e-998e-3765db7cfdf6)
 
