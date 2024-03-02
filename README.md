@@ -150,3 +150,23 @@ model.add(Dense(1, activation='linear')) #final dense layer for prediction (1 nu
 - The pre-trained **VGGFace** model is added as the base layer.
 - Several fully connected layers (**Dense**) are added on top of the VGGFace model for age prediction.
 - **Dropout** layers are included for regularization to prevent overfitting.
+
+### 4. Compile model
+```python
+# Define the learning rate
+learning_rate = 0.001
+
+# Create the Adam optimizer with the specified learning rate
+optimizer = Adam(learning_rate=learning_rate)
+
+# Compile the model
+model.compile(optimizer=optimizer, loss='mean_squared_error')  # Use appropriate loss for regression
+```
+- The **Adam optimizer** is used with a specified learning rate.
+- The model is compiled using mean squared error **('mean_squared_error')** as the loss function. This is common for regression tasks, such as age prediction.
+
+### 5. Train model
+```python
+# Train the model
+history_age = model.fit(age_train_generator, epochs=30, validation_data=age_test_generator)
+```
