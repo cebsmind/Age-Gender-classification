@@ -194,7 +194,9 @@ We can see that the loss function is decreasing which is a good sign for our age
 ### 2. Gender model accuracy 
 
 ![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/de2ef699-e348-450e-998e-3765db7cfdf6)
+
 The gender model has already more than 90% of accuracy in the first epochs, but it seems that he can't get more because of overfitting. I kept this model as I don't have enough ressource to fine tune the model. But still a good start
+
 ## 2. Save models
 It's essential to save models as it very long to train them
 ```python
