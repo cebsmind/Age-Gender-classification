@@ -145,7 +145,7 @@ model.add(Dense(256, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.2))
-model.add(Dense(1, activation='linear'))
+model.add(Dense(1, activation='linear')) #final dense layer for prediction (1 number)
 ```
 - The pre-trained **VGGFace** model is added as the base layer.
 - Several fully connected layers (**Dense**) are added on top of the VGGFace model for age prediction.
