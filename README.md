@@ -287,25 +287,25 @@ def process_and_predict(file, box_expansion=0.07, margin=1):
 
 The **process_and_predict** function takes an image file as input and performs the following steps:
 
-1. Opens the image file and converts it to OpenCV format (BGR).
+**1.** Opens the image file and converts it to OpenCV format (BGR).
 
-2. Utilizes the dlib face detector to identify faces in the image.
+**2.** Utilizes the dlib face detector to identify faces in the image.
 
-3. If a face is detected:
+**3.** If a face is detected:
 - Expands the bounding box around the face.
 - Resizes the face to 200x200 pixels.
 
-4. If no face is detected:
+**4.** If no face is detected:
 - Resizes the entire image to 200x200 pixels.
 
-5. Converts the processed image to a NumPy array, normalizes pixel values, and reshapes it to match the expected input shape.
+**5.** Converts the processed image to a NumPy array, normalizes pixel values, and reshapes it to match the expected input shape.
 
-6. Uses pre-trained models for age and gender prediction:
+**6.** Uses pre-trained models for age and gender prediction:
 - Predicts the age using the age_model.
 - Predicts the gender and converts the prediction to 'male' or 'female' using the gender_model.
 
-7. Prints the predicted age and gender.
+**7.** Prints the predicted age and gender.
 
-8. Returns the resized image (300x300 pixels).
+**8.** Returns the resized image (300x300 pixels).
 
-To use this function, provide the path to your pre-trained age and gender models (age_model and gender_model), and call the function with the image file you want to analyze.
+To use this function, we need to provide the path to our pre-trained age and gender models (age_model and gender_model), and call the function with the image file we want to analyze.
