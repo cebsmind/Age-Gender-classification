@@ -183,4 +183,18 @@ and we also change the `loss function` as we predict a binary class
 # Compile the gender model
 gender_model.compile(optimizer=optimizer_gender, loss='binary_crossentropy', metrics=['accuracy'])
 ```
+# Evaluate model
+## 1. Metrics
+Now we trained our model, we can evaluate the metrics for each epochs for our gender model (More than 90% accuracy to predict the gender)
 
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/de2ef699-e348-450e-998e-3765db7cfdf6)
+
+## 2. Save models
+It's essential to save models as it very long to train them
+```python
+#save model
+model.save('age_model.h5')
+gender_model.save('gender_model.h5')
+```
+
+## 3. Test model
