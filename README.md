@@ -170,3 +170,17 @@ model.compile(optimizer=optimizer, loss='mean_squared_error')  # Use appropriate
 # Train the model
 history_age = model.fit(age_train_generator, epochs=30, validation_data=age_test_generator)
 ```
+In the training process of a deep learning model, an epoch refers to one complete pass through the entire training dataset. During each epoch, the model learns from the entire dataset, adjusting its weights based on the calculated loss and the optimization algorithm used
+
+## 2. Gender classification
+We do the same process, but instead we change the last layer when building the model :
+```python
+gender_model.add(Dense(1, activation='sigmoid'))  # Assuming binary classification (0 or 1)
+```
+
+and we also change the `loss function` as we predict a binary class 
+```python
+# Compile the gender model
+gender_model.compile(optimizer=optimizer_gender, loss='binary_crossentropy', metrics=['accuracy'])
+```
+
