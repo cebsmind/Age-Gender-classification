@@ -208,6 +208,83 @@ gender_model.save('gender_model.h5')
 ## 3. Test model
 To test our model, I defined a function `process_and_predict` 
 
+```python
+def process_and_predict(file, box_expansion=0.07, margin=1):
+    im = Image.open(file)
+    # Convert PIL image to OpenCV format (BGR)
+    cv_image = cv2.cvtColor(np.array(im), cv2.COLOR_RGB2BGR)
+
+    # Create the Dlib face detector
+    detector = dlib.get_frontal_face_detector()
+
+    # Detect faces in the image
+    faces = detector(cv_image)
+
+    if faces:
+        # Use the first detected face for simplicity
+        face_rect = faces[0]
+
+        # Convert Dlib rectangle to (x, y, w, h)
+        x, y, w, h = face_rect.left(), face_rect.top(), face_rect.width(), face_rect.height()
+
+        # Expand the bounding box
+        expansion_x = int(w * box_expansion)
+        expansion_y = int(h * box_expansion)
+        x -= expansion_x
+        y -= expansion_y
+        w += 2 * expansion_x
+        h += 2 * expansion_y
+
+        # Add margin
+        x -= margin
+        y -= margin
+        w += 2 * margin
+        h += 2 * margin
+
+        # Ensure the expanded box is within the image boundaries
+        x = max(0, x)
+        y = max(0, y)
+        w = min(cv_image.shape[1] - x, w)
+        h = min(cv_image.shape[0] - y, h)
+
+        # Crop and zoom on the expanded face
+        face = cv_image[y:y+h, x:x+w]
+
+        # Resize the face to 200x200
+        face = cv2.resize(face, (200, 200))
+
+        # Convert the NumPy array back to PIL image
+        im = Image.fromarray(cv2.cvtColor(face, cv2.COLOR_BGR2RGB))
+    else:
+        # If no face is detected, resize the entire image to 200x200
+        im = im.resize((200, 200), resample=Image.BICUBIC)
+
+    # Convert the PIL image to a NumPy array
+    ar = np.asarray(im)
+
+    # Convert the data type of the array to float32
+    ar = ar.astype('float32')
+
+    # Normalize the pixel values to the range [0, 1]
+    ar /= 255.0
+
+    # Reshape the array to match the expected input shape of the model
+    ar = ar.reshape(-1, 200, 200, 3)
+
+    # Predict age and gender using the provided models
+    age = age_model.predict(ar)
+    gender = np.round(gender_model.predict(ar))
+
+    # Convert gender prediction to 'male' or 'female'
+    gender = 'male' if gender == 0 else 'female'
+
+    # Print the predicted age and gender
+    print('Age:', int(age), '\nGender:', gender)
+
+    # Return the resized image (300x300)
+    return im.resize((300, 300), Image.BICUBIC)
+```
+
 The **process_and_predict** function takes an image file as input and performs the following steps:
 
 1. Opens the image file and converts it to OpenCV format (BGR).
