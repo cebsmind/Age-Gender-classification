@@ -114,6 +114,7 @@ In the context of our age and gender classification project using the UTKFaces d
 ![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/9347fa2a-ae5e-4abc-9c78-f768c8dfa4af)
 
 # Modelisation
+## 1. Age prediction
 My goal here was to use the pre-trained VGGFace model, designed for face recognition. But to be optimal with our task, I decided to fine tune during training it so it can adapt to our task for age & gender recognition.
 ### 1. VGG Face implementation
 ```python
