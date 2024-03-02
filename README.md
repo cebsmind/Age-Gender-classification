@@ -16,5 +16,18 @@ This Project's goal is to use Deep Learning to predict the age & gender of a per
 A convolutional neural network (CNN) is a category of machine learning model, namely a type of deep learning algorithm well suited to analyzing visual data. CNNs, sometimes referred to as convnets, use principles from linear algebra, particularly convolution operations, to extract features and identify patterns within images. Although CNNs are predominantly used to process images, they can also be adapted to work with audio and other signal data.
 
 # Getting Started
-## First setp : Configure GPU
-- 
+## First step : Configure GPU
+Before delving into our deep learning project, it's essential to configure your GPU to ensure optimal performance. To check the availability of your GPU and prevent Out-Of-Memory (OOM) errors, you can run the following code snippet:
+```python
+import tensorflow as tf
+
+# Avoid OOM errors by setting GPU Memory Consumption Growth
+gpus = tf.config.experimental.list_physical_devices('GPU')
+for gpu in gpus: 
+    tf.config.experimental.set_memory_growth(gpu, True)
+    
+# Check the list of available GPUs
+tf.config.list_physical_devices('GPU')
+# Output should resemble: [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
+```
+More info about GPU configuration for tensorflow [Here](https://www.tensorflow.org/guide/gpu?hl=fr)
