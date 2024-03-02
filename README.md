@@ -138,7 +138,7 @@ This code unfreezes the last three layers of the VGGFace model, allowing them to
 ```python
 # Create a new model for age prediction
 model = Sequential()
-model.add(base_model)  # Assuming you have loaded your base_model
+model.add(base_model)  # VGGFace base model
 model.add(Dense(512, activation='relu'))
 model.add(Dropout(0.3))
 model.add(Dense(256, activation='relu'))
