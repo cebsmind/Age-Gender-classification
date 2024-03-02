@@ -100,13 +100,52 @@ In the context of our age and gender classification project using the UTKFaces d
 ### Benefits of Data Augmentation
 **Increased Dataset Size:**
 - The UTKFaces dataset may be limited in size, and data augmentation allows us to artificially expand our dataset by generating new variations of the existing images.
+
 **Improved Generalization:**
 - Augmenting the data helps the model generalize better to unseen data by exposing it to a broader range of variations, such as different poses, lighting conditions, and facial expressions.
+
 **Reduced Overfitting:**
 - Data augmentation serves as a regularization technique, helping to prevent overfitting by exposing the model to a more diverse set of training examples.
+  
 **Invariant Learning:**
 - Augmentation techniques, such as rotation, flipping, and scaling, make the model more invariant to these transformations during training, improving its ability to recognize patterns in various orientations.
+
 ### Example 
 ![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/9347fa2a-ae5e-4abc-9c78-f768c8dfa4af)
 
+# Modelisation
+My goal here was to use the pre-trained VGGFace model, designed for face recognition. But to be optimal with our task, I decided to fine tune during training it so it can adapt to our task for age & gender recognition.
+### 1. VGG Face implementation
+```python
+# Load the VGGFace model with pre-trained weights
+base_model = VGGFace(model='vgg16', include_top=False, input_shape=(IMG_SIZE, IMG_SIZE, 3), pooling='avg')
+```
+- **VGGFace** is a pre-trained model specifically designed for face recognition tasks.
+- **model='vgg16'** specifies that the VGG16 architecture should be used.
+- **include_top=False** excludes the final fully connected layers of the original VGG16 model.
+- **input_shape=(IMG_SIZE, IMG_SIZE, 3)** defines the input shape for the model.
+- **pooling='avg'** specifies global average pooling for reducing spatial dimensions.
 
+### 2. Unfreeze top layers
+```python
+# Unfreeze the last few layers of the VGGFace model
+for layer in base_model.layers[-3:]:
+    layer.trainable = True
+```
+This code unfreezes the last three layers of the VGGFace model, allowing them to be fine-tuned during training.
+### 3. Add layers
+```python
+# Create a new model for age prediction
+model = Sequential()
+model.add(base_model)  # Assuming you have loaded your base_model
+model.add(Dense(512, activation='relu'))
+model.add(Dropout(0.3))
+model.add(Dense(256, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(128, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(1, activation='linear'))
+```
+- The pre-trained **VGGFace** model is added as the base layer.
+- Several fully connected layers (**Dense**) are added on top of the VGGFace model for age prediction.
+- **Dropout** layers are included for regularization to prevent overfitting.
