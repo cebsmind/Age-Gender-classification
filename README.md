@@ -81,7 +81,8 @@ We can also display some images now to see how they looks
 ![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/cb2b0071-8ae5-46dd-9cd1-9c7ee21499a5)
 
 # Pre-Processing
-The first thing we need to do is to separate our datas into train/test for age & gender, like this : 
+## 1. Train / Test
+The first thing we need to do is to separate our datas into training set and test set, for age and gender. 
 ```python
 # 'path' column contains file paths of images / 'Ages' and 'Genders' are target variables
 x_image_paths = df['path']
@@ -94,5 +95,18 @@ x_train_age, x_test_age, y_train_age, y_test_age = train_test_split(x_image_path
 # Split the dataset for gender prediction
 x_train_gender, x_test_gender, y_train_gender, y_test_gender = train_test_split(x_image_paths, y_gender, test_size=0.2, random_state=42)
 ```
+## 2. Data Augmentation
+In the context of our age and gender classification project using the UTKFaces dataset, data augmentation plays a crucial role in enhancing the robustness and generalization of our deep learning models. Data augmentation involves applying various transformations to the original images, creating augmented versions that maintain the same semantic content while introducing diversity. 
+### Benefits of Data Augmentation
+**Increased Dataset Size:**
+- The UTKFaces dataset may be limited in size, and data augmentation allows us to artificially expand our dataset by generating new variations of the existing images.
+**Improved Generalization:**
+- Augmenting the data helps the model generalize better to unseen data by exposing it to a broader range of variations, such as different poses, lighting conditions, and facial expressions.
+**Reduced Overfitting:**
+- Data augmentation serves as a regularization technique, helping to prevent overfitting by exposing the model to a more diverse set of training examples.
+**Invariant Learning:**
+- Augmentation techniques, such as rotation, flipping, and scaling, make the model more invariant to these transformations during training, improving its ability to recognize patterns in various orientations.
+### Example 
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/9347fa2a-ae5e-4abc-9c78-f768c8dfa4af)
 
 
