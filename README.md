@@ -186,6 +186,7 @@ In the training process of a deep learning model, an epoch refers to one complet
 
 ## 2. Gender classification
 For gender classification, a similar process is followed, with a focus on tailoring the model for binary classification (male or female). The last layer of the model is adjusted, and the loss function is specifically chosen for binary prediction.
+
 Here, the last layer is configured with a single neuron and a sigmoid activation function, suitable for binary classification tasks.
 ```python
 # Adjusting the last layer for binary classification
@@ -193,114 +194,46 @@ gender_model.add(Dense(1, activation='sigmoid'))  # Assuming binary classificati
 ```
 
 To optimize the model for gender classification, the loss function is set to 'binary_crossentropy', ensuring efficient training for binary outcomes.
-This configuration, combined with the VGGFace model and fine-tuning process, creates a tailored solution for accurate gender prediction based on facial features.
 ```python
 # Compile the gender model
 gender_model.compile(optimizer=optimizer_gender, loss='binary_crossentropy', metrics=['accuracy'])
 ```
-# Evaluate model
+
+This configuration, combined with the VGGFace model and fine-tuning process, creates a tailored solution for accurate gender prediction based on facial features.
+
+# Evaluate Model
+
 ## 1. Metrics
-Now we trained our model, we can evaluate the metrics for each epochs for our age and gender models.
-### 1. Age model loss function
-![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/5da4f205-5bb2-4d4d-bac7-9ec5c115b17a)
 
-We can see that the loss function is decreasing which is a good sign for our age prediction model.
+With our models trained, it's crucial to assess their performance through the analysis of key metrics. The evaluation process includes monitoring the loss function for the age model and tracking the accuracy of the gender model.
 
-### 2. Gender model accuracy 
+### 1. Age Model Loss Function
 
-![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/de2ef699-e348-450e-998e-3765db7cfdf6)
+![Age Model Loss](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/5da4f205-5bb2-4d4d-bac7-9ec5c115b17a)
 
-The gender model has already more than 90% of accuracy in the first epochs, but it seems that he can't get more because of overfitting. I kept this model as I don't have enough ressource to fine tune the model. But still a good start
+The visualization above illustrates the progression of the loss function across epochs for our age prediction model. A decreasing trend in the loss function is observed, indicating that the model is effectively learning and adapting to the training data. This is a positive sign of convergence and suggests that the age prediction model is on the right path.
+
+### 2. Gender Model Accuracy
+
+![Gender Model Accuracy](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/de2ef699-e348-450e-998e-3765db7cfdf6)
+
+In the case of the gender model, the accuracy plot demonstrates notable performance, surpassing 90% accuracy in the initial epochs. However, it becomes apparent that further accuracy improvement is limited, potentially due to overfitting. Despite this limitation, the model is retained, acknowledging resource constraints. The achieved accuracy in the early epochs marks a promising starting point.
+
+This comprehensive evaluation provides insights into the training progress and effectiveness of both age and gender prediction models.
+
 
 ## 2. Save models
-It's essential to save models as it very long to train them
+Saving the trained models is a crucial step to preserve the learned weights and architectures, especially considering the substantial training time. The following code snippet demonstrates how to save both the age and gender models:
+
 ```python
-#save model
+# Save the models
 model.save('age_model.h5')
 gender_model.save('gender_model.h5')
 ```
+Now, we can easily reload these saved models at a later time for predictions without the need to retrain.
 
 ## 3. Test model
-To test our model, I defined a function `process_and_predict` 
-
-```python
-def process_and_predict(file, box_expansion=0.07, margin=1):
-    im = Image.open(file)
-    # Convert PIL image to OpenCV format (BGR)
-    cv_image = cv2.cvtColor(np.array(im), cv2.COLOR_RGB2BGR)
-
-    # Create the Dlib face detector
-    detector = dlib.get_frontal_face_detector()
-
-    # Detect faces in the image
-    faces = detector(cv_image)
-
-    if faces:
-        # Use the first detected face for simplicity
-        face_rect = faces[0]
-
-        # Convert Dlib rectangle to (x, y, w, h)
-        x, y, w, h = face_rect.left(), face_rect.top(), face_rect.width(), face_rect.height()
-
-        # Expand the bounding box
-        expansion_x = int(w * box_expansion)
-        expansion_y = int(h * box_expansion)
-        x -= expansion_x
-        y -= expansion_y
-        w += 2 * expansion_x
-        h += 2 * expansion_y
-
-        # Add margin
-        x -= margin
-        y -= margin
-        w += 2 * margin
-        h += 2 * margin
-
-        # Ensure the expanded box is within the image boundaries
-        x = max(0, x)
-        y = max(0, y)
-        w = min(cv_image.shape[1] - x, w)
-        h = min(cv_image.shape[0] - y, h)
-
-        # Crop and zoom on the expanded face
-        face = cv_image[y:y+h, x:x+w]
-
-        # Resize the face to 200x200
-        face = cv2.resize(face, (200, 200))
-
-        # Convert the NumPy array back to PIL image
-        im = Image.fromarray(cv2.cvtColor(face, cv2.COLOR_BGR2RGB))
-    else:
-        # If no face is detected, resize the entire image to 200x200
-        im = im.resize((200, 200), resample=Image.BICUBIC)
-
-    # Convert the PIL image to a NumPy array
-    ar = np.asarray(im)
-
-    # Convert the data type of the array to float32
-    ar = ar.astype('float32')
-
-    # Normalize the pixel values to the range [0, 1]
-    ar /= 255.0
-
-    # Reshape the array to match the expected input shape of the model
-    ar = ar.reshape(-1, 200, 200, 3)
-
-    # Predict age and gender using the provided models
-    age = age_model.predict(ar)
-    gender = np.round(gender_model.predict(ar))
-
-    # Convert gender prediction to 'male' or 'female'
-    gender = 'male' if gender == 0 else 'female'
-
-    # Print the predicted age and gender
-    print('Age:', int(age), '\nGender:', gender)
-
-    # Return the resized image (300x300)
-    return im.resize((300, 300), Image.BICUBIC)
-```
-
-The **process_and_predict** function takes an image file as input and performs the following steps:
+To assess the model's predictions on new images, the `process_and_predict` function is defined. This function takes an image file as input and performs the following steps:
 
 **1.** Opens the image file and converts it to OpenCV format (BGR).
 
@@ -329,6 +262,8 @@ To use this function, we need to provide the path to our pre-trained age and gen
 ### 1. Baby 
 
 ```python
+#example usage
+
 img_path = "test_images/1yo.jpg"  
 process_and_predict(img_path)
 ```
