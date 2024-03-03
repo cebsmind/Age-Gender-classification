@@ -357,8 +357,23 @@ Age: 8
 Gender: female
 ```
 
-We can test with more images, but I just wanted to have a quick look on how it performs and it's not that bad as I didn't fine tune the model too much so it leaves us room for better performance.
-The model perform pretty well for gender recognition, for age of course it's way harder even for a human to guess the right age but it's not incoherent at all. Except for some exception as we can see in the last picture where it predicts **8yo** but we, as human, see that's a grown woman. Overall, it's pretty satisfiying.
+## Conclusion
+While the model's performance can be further refined through fine-tuning, initial testing on a set of images provides valuable insights. Although not extensively fine-tuned, the model exhibits promising results, particularly in gender recognition.
+
+### Gender Recognition
+
+The gender model demonstrates robust performance, consistently achieving accuracy above 90% in the initial epochs. Despite resource constraints preventing extensive fine-tuning, the model's accuracy serves as a strong foundation for gender prediction.
+
+### Age Prediction Challenges
+
+Age prediction, inherently a more intricate task, presents a unique set of challenges. Even for human observers, accurately determining age from facial features is a complex endeavor. The model, with its limited fine-tuning, shows commendable coherence in age predictions. However, there are instances where the predicted age may deviate from human perception.
+
+### Room for Improvement
+
+Notably, the model leaves room for improvement, offering opportunities for enhanced performance through further fine-tuning and optimization. While there are occasional exceptions, such as predicting a significantly younger age for a grown individual, overall, the model's performance is promising.
+
+In conclusion, the model, in its current state, provides a solid foundation for age and gender prediction. Subsequent iterations with additional fine-tuning and optimization hold the potential for further refinement and improved accuracy.
+
 
 # Set up APP
 
