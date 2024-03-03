@@ -309,3 +309,108 @@ The **process_and_predict** function takes an image file as input and performs t
 **8.** Returns the resized image (300x300 pixels).
 
 To use this function, we need to provide the path to our pre-trained age and gender models (age_model and gender_model), and call the function with the image file we want to analyze.
+
+## 4. Test Samples
+### 1. Baby 
+
+# Example usage:
+```python
+img_path = "test_images/1yo.jpg"  
+process_and_predict(img_path)
+```
+it returns :
+
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/d8f95b3a-ab17-44b9-8d40-45334c9f6024)
+
+
+```
+Age: 1 
+Gender: female
+```
+
+### 2. 16 years old girl
+
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/e6b41a76-434f-4103-98ae-609ea52568ac)
+
+```python
+Age: 23 
+Gender: female
+```
+
+### 3. 20 years old girl
+
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/be674faf-d80e-4e32-8678-4e6b6a8c9b86)
+
+```python
+Age: 21 
+Gender: female
+```
+
+### 4. 25 years old male
+
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/d5014a67-0ef3-4b1e-887f-9c602417f727)
+
+```python
+Age: 29 
+Gender: male
+```
+
+### 5. 40 years old male
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/294855a6-34b9-455f-8127-87f955e0b4ca)
+
+```python
+Age: 51 
+Gender: male
+```
+
+### 6. 38 years old male
+
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/37c84341-88a8-48ea-9d45-663516125da6)
+
+```python
+Age: 44 
+Gender: male
+```
+
+### 7. 55 years old female
+
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/4dac8836-1df8-4c3c-9c44-fce126514baa)
+
+```python
+Age: 75 
+Gender: female
+```
+
+### 8. 70 years old female
+
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/1863b0e8-6323-4767-804f-938c330de53e)
+
+```python
+Age: 81 
+Gender: female
+```
+
+### 9. Male with make up
+
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/de809e72-1301-4700-91df-661ea3add05e)
+
+```python
+Age: 21 
+Gender: male
+```
+
+### Women with baby face
+
+![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/96186a7f-137a-486b-8218-3e735f4f27ca)
+
+```python
+Age: 8 
+Gender: female
+```
+
+
+
+
+
+
+
