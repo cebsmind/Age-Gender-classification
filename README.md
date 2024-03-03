@@ -1,6 +1,5 @@
 # Deep Learning Project : Age & Gender Classification
-This Project's goal is to use Deep Learning to predict the age & gender of a person with a picture. Which is a difficult task even for a human (specially for age)
-
+This project aims to leverage the power of Deep Learning to predict both the age and gender of an individual based on a given image. Predicting age, in particular, poses a significant challenge even for humans, making it an intriguing and complex task.
 # App preview
 ![image](https://github.com/cebsmind/Age-Gender-classification/assets/154905924/07b2aebc-130b-4594-b337-7058a6882655)
 
@@ -82,7 +81,7 @@ We can also display some images now to see how they looks
 
 # Pre-Processing
 ## 1. Train / Test
-The first thing we need to do is to separate our datas into training set and test set, for age and gender. 
+The initial step in preparing our data involves dividing it into distinct sets for training and testing, focusing separately on age and gender prediction.
 ```python
 # 'path' column contains file paths of images / 'Ages' and 'Genders' are target variables
 x_image_paths = df['path']
@@ -115,7 +114,20 @@ In the context of our age and gender classification project using the UTKFaces d
 
 # Modelisation
 ## 1. Age prediction
-My goal here was to use the pre-trained VGGFace model, designed for face recognition. But to be optimal with our task, I decided to fine tune during training it so it can adapt to our task for age & gender recognition.
+
+## Model Selection: Fine-Tuning VGGFace
+
+In this phase, the objective is to leverage the power of the pre-trained VGGFace model, initially designed for face recognition. However, to optimize its performance for our specific task of age and gender recognition, a fine-tuning approach is adopted.
+
+### Why VGGFace?
+
+VGGFace is a state-of-the-art model renowned for its proficiency in face recognition tasks. By starting with this pre-trained model, we harness its ability to capture intricate facial features and representations.
+
+### Fine-Tuning for Age & Gender Recognition
+
+Recognizing that age and gender prediction require nuanced understanding beyond general face recognition, the VGGFace model undergoes fine-tuning during training. Fine-tuning allows the model to adapt its learned features to the specific characteristics relevant to age and gender classification.
+
+This strategic adjustment aims to enhance the model's accuracy and effectiveness in predicting age and gender, ensuring it becomes finely attuned to the intricacies of our targeted tasks.
 ### 1. VGG Face implementation
 ```python
 # Load the VGGFace model with pre-trained weights
@@ -173,12 +185,15 @@ history_age = model.fit(age_train_generator, epochs=30, validation_data=age_test
 In the training process of a deep learning model, an epoch refers to one complete pass through the entire training dataset. During each epoch, the model learns from the entire dataset, adjusting its weights based on the calculated loss and the optimization algorithm used
 
 ## 2. Gender classification
-We do the same process, but instead we change the last layer when building the model :
+For gender classification, a similar process is followed, with a focus on tailoring the model for binary classification (male or female). The last layer of the model is adjusted, and the loss function is specifically chosen for binary prediction.
+Here, the last layer is configured with a single neuron and a sigmoid activation function, suitable for binary classification tasks.
 ```python
+# Adjusting the last layer for binary classification
 gender_model.add(Dense(1, activation='sigmoid'))  # Assuming binary classification (0 or 1)
 ```
 
-and we also change the `loss function` as we predict a binary class 
+To optimize the model for gender classification, the loss function is set to 'binary_crossentropy', ensuring efficient training for binary outcomes.
+This configuration, combined with the VGGFace model and fine-tuning process, creates a tailored solution for accurate gender prediction based on facial features.
 ```python
 # Compile the gender model
 gender_model.compile(optimizer=optimizer_gender, loss='binary_crossentropy', metrics=['accuracy'])
