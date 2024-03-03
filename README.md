@@ -313,7 +313,6 @@ To use this function, we need to provide the path to our pre-trained age and gen
 ## 4. Test Samples
 ### 1. Baby 
 
-# Example usage:
 ```python
 img_path = "test_images/1yo.jpg"  
 process_and_predict(img_path)
@@ -408,6 +407,10 @@ Age: 8
 Gender: female
 ```
 
+We can test with more images, but I just wanted to have a quick look on how it performs and it's not that bad as I didn't fine tune the model too much so it leaves us room for better performance.
+The model perform pretty well for gender recognition, for age of course it's way harder even for a human to guess the right age but it's not incoherent at all. Except for some exception as we can see in the last picture where it predicts **8yo** but we, as human, see that's a grown woman. Overall, it's pretty satisfiying.
+
+# Set up APP
 
 
 
