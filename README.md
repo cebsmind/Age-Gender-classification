@@ -412,6 +412,45 @@ The model perform pretty well for gender recognition, for age of course it's way
 
 # Set up APP
 
+## To run the app you need 
+#### 2. Download both `age_model.h5` and `gender_model.h5`
+#### 3. Set up folders : Below is the suggested folder structure for organizing your Flask app
+
+```plaintext
+flask-app/
+│
+├── models/
+│   ├── age_model.h5
+│   └── gender_model.h5
+│
+├── static/
+│   ├── uploads/
+│   │
+│   ├── background/
+│   │   ├── background.jpg
+│   │ 
+│   ├── css/
+│   │   ├── style.css
+│   │   
+│   └── js/
+│       └── script.js
+│
+├── templates/
+│      ├── index.html
+│      └── result.html
+│
+├── main.py
+├── requirements.txt
+├── .gitignore.txt
+├── .gcloudignore
+```
+#### 4. Install dependencies 
+- `python -m venv env`
+- `.env/Scripts/activate`
+- `pip install -r requirements.txt`
+#### 5. Run in terminal 
+- `python main.py`
+- open http://127.0.0.1:5000/
 
 
 
